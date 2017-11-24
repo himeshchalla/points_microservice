@@ -1,0 +1,38 @@
+{
+  "name": "assignment_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "start-watch": "nodemon --exec 'npm start'",
+    "test": "export NODE_ENV=test || set \"NODE_ENV=test\" && mocha --allow-uncaught --full-trace --no-warnings --recursive ./server/**/*.test.js",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "engines": {
+    "node": "7.7.3"
+  },
+  "author": "Himeshkumar Challa",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.2",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.3",
+    "node-inspector": "^1.1.1",
+    "request": "^2.81.0",
+    "validator": "^8.0.0"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
+  }
+}
