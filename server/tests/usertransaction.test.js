@@ -151,7 +151,7 @@ describe('POST /usertransaction', () => {
         .expect((res) => {
             expect(res.headers['x-auth']).toNotExist();
             expect(res.body._id).toNotExist();
-            // done();
+            done();
         })
         .end(done());
     });
@@ -172,6 +172,7 @@ describe('POST /usertransaction', () => {
         .expect((res) => {
             expect(res.headers['x-auth']).toNotExist();
             expect(res.body._id).toNotExist();
+            done();
         })
         .end(done());
     });
@@ -184,6 +185,7 @@ describe("GET /usertransaction", () => {
         .expect(200)
         .expect((res) => {
             expect(res.body.usertransactions.length).toBe(usertransactiondata.length);
+            done();
         })
         .end((err, response) => {
             if(err) {
@@ -206,6 +208,7 @@ describe("GET /usertransaction/:id", () => {
         .expect(200)
         .expect((res) => {
             expect(res.body.usertransaction.points).toBe(usertransactiondata[0].points)
+            done();
         })
         .end(done);
     });
@@ -242,6 +245,7 @@ describe("DELETE /usertransaction/:id", () => {
         .expect((res) => {
             expect(res.body.usertransaction.text).toBe(usertransactiondata[0].text);
             expect(res.body.usertransaction._id).toBe(hexId);
+            done();
         })
         .end((err, response) => {
             if(err) {

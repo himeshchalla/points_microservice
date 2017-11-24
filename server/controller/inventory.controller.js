@@ -77,7 +77,7 @@ inventoryRouter.delete('/:id', authenticate, (req, res) => {
     }
     Inventory.findOneAndRemove({
         _id: id,
-        _creator_id : req.user._id
+        // _creator_id : req.user._id
     }).then((inventory) => {
         if(!inventory) {
             return res.status(404).send();

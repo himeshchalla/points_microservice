@@ -30,7 +30,7 @@ var Inventory = mongoose.model('Inventory', {
         required: true,
         minlength: 2,
         maxlength: 512,
-        trim: true
+        trim: false
     },
     createdAt: {
         type: Date,

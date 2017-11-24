@@ -15,6 +15,7 @@ userTransactionRouter.use(bodyParser.json());
  */
 userTransactionRouter.post('/', authenticate, (req, res, next) => {
     var body = _.pick(req.body, ['points', 'transaction_type', 'user_id', 'item_id', 'qty', 'price' ]);
+    body.user_id = req.user._id;
     if(!ObjectID.isValid(body.user_id)) {
         res.status(404).send();
     }
@@ -24,7 +25,7 @@ userTransactionRouter.post('/', authenticate, (req, res, next) => {
     usertransaction.save().then((doc) => {
      // User Transcation saved successfully
      res.json(doc);
-     Promise.resolve();
+    //  Promise.resolve();
     }).catch((err) => {
      // Unable to save Inventory
      res.status(400).send(err);

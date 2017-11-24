@@ -82,7 +82,7 @@ app.get('/getItems', authenticate, (req, res) => {
     });
 });
 /**
- * let user buy an item which is present in backend inventory : route as a PATCH /todos/:id
+ * let user buy an item which is present in backend inventory : route as a PATCH /purchaseItem/:id
  * Update item and add user transactions by inventory id
  * @type {[type]}
  */
@@ -98,7 +98,7 @@ app.patch('/purchaseItem/:id/:qty', authenticate, (req, res) => {
     }).then((inventory) => {
         var item_amount = qty*inventory.price;
         var total_user_points = req.user.free_points+req.user.purchased_points;
-        if(!inventory) {
+        if(inventory.length < 1) {
             return res.status(400).send('Item does not exists');
         }
         if(inventory.qty <= qty ) {
@@ -200,7 +200,7 @@ app.get('/getInventory', authenticate, (req, res) => {
     Inventory.find({
         'qty': { $gt : 0}
     }).then((available_items) => {
-        if(!available_items) {
+        if(available_items.length < 1) {
             return res.status(404).send();
         }
         res.send({'available_items':available_items});
@@ -218,7 +218,8 @@ var addFreePoints = function() {
     const free_points_cycle_limit = 50;
     const user_data = User.find({
     }).then((users)=>{
-        if(!users) {
+        if(users.length < 1) {
+            console.log("No users found to give free points by system");
             return;
         }
         users.forEach((user) => {
