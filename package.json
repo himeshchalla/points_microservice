@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node ./server/server.js > stdout.txt 2> stderr.txt &",
     "start-watch": "nodemon --exec 'npm start'",
     "start-debug": "node debug --debug-brk --inspect ./server/server.js",
     "test": "export NODE_ENV=test || set \"NODE_ENV=test\" && mocha --allow-uncaught --full-trace --no-warnings --recursive ./server/**/*.test.js",
